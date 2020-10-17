@@ -18,9 +18,9 @@ const twitterLoginButtonElement = '.r-1jgb5lz > .css-1dbjc4n.r-13qz1uu > form > 
 const tweetInputElement = '.public-DraftStyleDefault-block'
 
 const filePath = './dailyNumbersSave'
+const tweetsSavedPath = './tweetsSaved.json'
 
-const tweetMessage = (savedStatsString) => {
-  const savedStats = JSON.parse(savedStatsString);
+const tweetMessage = (savedStats) => {
   return `  ${savedStats.latestDate} had ${savedStats.latestCases} cases reported in Ontario. 
   Change since last report: ${savedStats.changeSinceLastReport}. 
   Info taken from covid-19.ontario.ca/`
@@ -52,8 +52,41 @@ it('Can login to twitter', () => {
 });
 it('Can add tweet', () => {
   cy.readFile(filePath).then(savedStatsString => {
-    get(tweetInputElement).type(tweetMessage(savedStatsString))
+    const savedStats = JSON.parse(savedStatsString);
+    createHistoryFile();
+    cy.readFile(tweetsSavedPath).then(savedObject => {
+      if (!(savedStats.latestDate in savedObject)){
+        get(tweetInputElement).type(tweetMessage(savedStats));
+        get('[data-testid=tweetButtonInline]').click();
+        cy.writeFile(tweetsSavedPath, {...savedObject, [savedStats.latestDate]: ""})
+      }
+
+    });
+
   });
 })
+
+/**
+ * Creates history file if it does not exists
+ */
+const createHistoryFile = () => {
+  if (!fileExists(tweetsSavedPath)){
+    cy.writeFile(tweetsSavedPath, {})
+  }
+}
+
+const fileExists = () => {
+  const fs = require('fs')
+
+  const path = './file.txt'
+
+  try {
+    if (fs.existsSync(path)) {
+     return true;
+    }
+  } catch(err) {
+    return false;
+  }
+}
 
 
