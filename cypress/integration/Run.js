@@ -1,3 +1,5 @@
+import sendTweet from "./Tweet";
+
 const { $ } = Cypress;
 const { get, visit, contains, env } = cy;
 const { expect } = chai;
@@ -42,29 +44,49 @@ it('Can get values' , () => {
 it('Can arrive at twitter', () => {
   visit('https://twitter.com/login');
 });
-it('Can login to twitter', () => {
-  // Gets the username and password from config file
-  cy.readFile('./config.json').then(savedObject => {
-    get(twitterLoginElement).type(savedObject.username);
-    get(twitterPasswordElement).type(savedObject.password);
-    get(twitterLoginButtonElement).click();
-  });
-});
-it('Can add tweet', () => {
-  cy.readFile(filePath).then(savedStatsString => {
-    const savedStats = JSON.parse(savedStatsString);
-    createHistoryFile();
-    cy.readFile(tweetsSavedPath).then(savedObject => {
-      if (!(savedStats.latestDate in savedObject)){
-        get(tweetInputElement).type(tweetMessage(savedStats));
-        get('[data-testid=tweetButtonInline]').click();
-        cy.writeFile(tweetsSavedPath, {...savedObject, [savedStats.latestDate]: ""})
-      }
-
+it('Can send tweet via API', () => {
+  cy.readFile('./config.json').then(configObject => {
+    cy.readFile(filePath).then(savedStatsString => {
+      const savedStats = JSON.parse(savedStatsString);
+      createHistoryFile();
+      cy.readFile(tweetsSavedPath).then(savedObject => {
+        if (!(savedStats.latestDate in savedObject)){
+          sendTweet(
+              tweetMessage(savedStats),
+              configObject["consumerKey"],
+              configObject["applicationKey"],
+              configObject["userAccessToken"],
+              configObject["userSecret"],
+          )
+          cy.writeFile(tweetsSavedPath, {...savedObject, [savedStats.latestDate]: ""})
+        }
+      });
     });
-
   });
 })
+// it('Can login to twitter', () => {
+//   // Gets the username and password from config file
+//   cy.readFile('./config.json').then(savedObject => {
+//     get(twitterLoginElement).type(savedObject.username);
+//     get(twitterPasswordElement).type(savedObject.password);
+//     get(twitterLoginButtonElement).click();
+//   });
+// });
+// it('Can add tweet', () => {
+//   cy.readFile(filePath).then(savedStatsString => {
+//     const savedStats = JSON.parse(savedStatsString);
+//     createHistoryFile();
+//     cy.readFile(tweetsSavedPath).then(savedObject => {
+//       if (!(savedStats.latestDate in savedObject)){
+//         get(tweetInputElement).type(tweetMessage(savedStats));
+//         get('[data-testid=tweetButtonInline]').click();
+//         cy.writeFile(tweetsSavedPath, {...savedObject, [savedStats.latestDate]: ""})
+//       }
+//
+//     });
+//
+//   });
+// })
 
 /**
  * Creates history file if it does not exists
