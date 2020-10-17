@@ -1,3 +1,4 @@
+const tweetsSavedPath = './tweetsSaved.json'
 /**
  * Creates history file if it does not exists
  */

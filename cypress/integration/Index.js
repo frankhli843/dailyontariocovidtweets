@@ -1,5 +1,5 @@
-import sendTweet from "./Tweet";
-import {createHistoryFile} from "./File";
+import sendTweet from "../helpers/Tweet";
+import {createHistoryFile} from "../helpers/File";
 
 const { $ } = Cypress;
 const { get, visit, contains, env } = cy;
@@ -36,9 +36,6 @@ it('Can get values' , () => {
   const latestCases = $(latestCasesElement).text();
   const changeSinceLastReport = $(changeSinceLastReportElement).text();
   cy.writeFile(filePath, {latestDate, latestCases, changeSinceLastReport})
-});
-it('Can arrive at twitter', () => {
-  visit('https://twitter.com/login');
 });
 it('Can send tweet via API', () => {
   cy.readFile('./config.json').then(configObject => {

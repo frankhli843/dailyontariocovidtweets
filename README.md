@@ -1,3 +1,4 @@
+
 # Daily Ontario Covid Tweets
 - I am an Ontario resident who checks the statistics on a daily basis so I can get a sense of the current situation. I wrote this simple bot to make the information more accessible on twitter. My hope is that with more access to information we can all be more informed.
 - This code that posts daily Covid numbers for Ontario taken from the offical government website: https://covid-19.ontario.ca/data
@@ -12,3 +13,5 @@
   "userSecret": ""
 }
 ```
+- To start with UI run: `yarn start`
+- To start with command line only run: `yarn run`
