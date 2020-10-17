@@ -1,0 +1,23 @@
+{
+  "name": "dailyontariocovidtweets",
+  "version": "1.0.0",
+  "description": "Cypress script that posts daily Covid numbers for Ontario",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "cypress": "^5.4.0"
+  },
+  "scripts": {
+    "start": "cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frankhli843/dailyontariocovidtweets.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/frankhli843/dailyontariocovidtweets/issues"
+  },
+  "homepage": "https://github.com/frankhli843/dailyontariocovidtweets#readme"
+}
