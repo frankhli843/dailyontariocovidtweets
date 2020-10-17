@@ -15,6 +15,6 @@
 ```
 - To start with UI run: `yarn start`
 - To start with command line only run: `yarn run`
-- Twitter: [@c_ontario](https://twitter.com/c_ontario)
+- Twitter: [@daily_ontario_c](https://twitter.com/daily_ontario_c)
 - Tweet demo
 ![tweet demo](./img/tweet_example.png)
