@@ -12,4 +12,4 @@
   "userSecret": ""
 }
 ```
-- Twitter is called @ontario_c
+- Twitter is called [@c_ontario](https://twitter.com/c_ontario)
