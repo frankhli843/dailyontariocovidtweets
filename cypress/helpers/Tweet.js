@@ -10,7 +10,8 @@ import * as OAuth from "oauth";
 *	For additional usage beyond status updates, refer to twitter api
 *		https://dev.twitter.com/docs/api/1.1
 */
-const sendTweet = (status, consumerKey, applicationKey, userAccessToken, userSecret) => {
+const sendTweet = (status, configObject) => {
+  const { consumerKey, applicationKey, userAccessToken, userSecret } = configObject;
   const oauth = new OAuth.OAuth(
       'https://api.twitter.com/oauth/request_token',
       'https://api.twitter.com/oauth/access_token',
@@ -37,6 +38,12 @@ const sendTweet = (status, consumerKey, applicationKey, userAccessToken, userSec
           // console.log(data);
         }
       });
+}
+
+export const tweetMessage = (savedStats) => {
+  return `  ${savedStats.latestDate} had ${savedStats.latestCases} cases reported in Ontario. 
+  Change since last report: ${savedStats.changeSinceLastReport}. 
+  Info taken from covid-19.ontario.ca/`
 }
 
 export default sendTweet;
