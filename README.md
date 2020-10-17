@@ -5,7 +5,9 @@
 - Requires that you have `config.json` file which the field username and password fill
 ```
 {
-    username: 'your twitter username',
-    password: 'your twitter password'
+  "consumerKey": "",
+  "applicationKey": "",
+  "userAccessToken": "",
+  "userSecret": ""
 }
 ```
