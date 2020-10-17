@@ -5,8 +5,6 @@
 - It will check for new numbers on a daily basis and post it to the twitter account of your choice.
 - This was created in order to make information more accessible.
 - I'm running the stats on this twitter account: [@daily_ontario_c](https://twitter.com/daily_ontario_c)
-- Tweet demo
-![tweet demo](./img/tweet_example.png)
 
 # To run on your own twitter account
 - The main logic can be at [cypress/integration/Index.js](https://github.com/frankhli843/dailyontariocovidtweets/blob/main/cypress/integration/Index.js) 
@@ -23,4 +21,4 @@
 - To start with command line only run: `yarn run`
 
 
-
+![tweet demo](./img/tweet_example.png)
