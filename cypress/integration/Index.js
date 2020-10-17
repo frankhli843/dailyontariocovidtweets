@@ -1,4 +1,5 @@
 import sendTweet from "./Tweet";
+import {createHistoryFile} from "./File";
 
 const { $ } = Cypress;
 const { get, visit, contains, env } = cy;
@@ -13,11 +14,6 @@ const tablesButton = '#CasesDaily > :nth-child(3) > [style="position: relative;"
 const latestDateElement = '[style="position: relative;"] > .ant-table-wrapper > .ant-spin-nested-loading > .ant-spin-container > .ant-table > .ant-table-container > .ant-table-content > table > .ant-table-tbody > :nth-child(1) > :nth-child(1)'
 const latestCasesElement = '[style="position: relative;"] > .ant-table-wrapper > .ant-spin-nested-loading > .ant-spin-container > .ant-table > .ant-table-container > .ant-table-content > table > .ant-table-tbody > :nth-child(1) > :nth-child(2)';
 const changeSinceLastReportElement = '[style="position: relative;"] > .ant-table-wrapper > .ant-spin-nested-loading > .ant-spin-container > .ant-table > .ant-table-container > .ant-table-content > table > .ant-table-tbody > :nth-child(1) > :nth-child(3)';
-
-const twitterLoginElement = ':nth-child(6) > .r-1uaug3w > :nth-child(1) > .css-1dbjc4n > .css-901oao > .r-30o5oe'
-const twitterPasswordElement = ':nth-child(7) > .r-1uaug3w > :nth-child(1) > .css-1dbjc4n > .css-901oao > .r-30o5oe'
-const twitterLoginButtonElement = '.r-1jgb5lz > .css-1dbjc4n.r-13qz1uu > form > :nth-child(1) > :nth-child(8) > [data-testid=LoginForm_Login_Button] > .r-1awozwy'
-const tweetInputElement = '.public-DraftStyleDefault-block'
 
 const filePath = './dailyNumbersSave'
 const tweetsSavedPath = './tweetsSaved.json'
@@ -64,51 +60,7 @@ it('Can send tweet via API', () => {
     });
   });
 })
-// it('Can login to twitter', () => {
-//   // Gets the username and password from config file
-//   cy.readFile('./config.json').then(savedObject => {
-//     get(twitterLoginElement).type(savedObject.username);
-//     get(twitterPasswordElement).type(savedObject.password);
-//     get(twitterLoginButtonElement).click();
-//   });
-// });
-// it('Can add tweet', () => {
-//   cy.readFile(filePath).then(savedStatsString => {
-//     const savedStats = JSON.parse(savedStatsString);
-//     createHistoryFile();
-//     cy.readFile(tweetsSavedPath).then(savedObject => {
-//       if (!(savedStats.latestDate in savedObject)){
-//         get(tweetInputElement).type(tweetMessage(savedStats));
-//         get('[data-testid=tweetButtonInline]').click();
-//         cy.writeFile(tweetsSavedPath, {...savedObject, [savedStats.latestDate]: ""})
-//       }
-//
-//     });
-//
-//   });
-// })
 
-/**
- * Creates history file if it does not exists
- */
-const createHistoryFile = () => {
-  if (!fileExists(tweetsSavedPath)){
-    cy.writeFile(tweetsSavedPath, {})
-  }
-}
 
-const fileExists = () => {
-  const fs = require('fs')
-
-  const path = './file.txt'
-
-  try {
-    if (fs.existsSync(path)) {
-     return true;
-    }
-  } catch(err) {
-    return false;
-  }
-}
 
 

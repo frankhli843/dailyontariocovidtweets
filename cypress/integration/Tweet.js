@@ -1,3 +1,4 @@
+import * as OAuth from "oauth";
 /*
 *	Code snippet for posting tweets to your own twitter account from node.js.
 *	You must first create an app through twitter, grab the apps key/secret,
@@ -10,8 +11,7 @@
 *		https://dev.twitter.com/docs/api/1.1
 */
 const sendTweet = (status, consumerKey, applicationKey, userAccessToken, userSecret) => {
-  var OAuth = require('oauth');
-  var oauth = new OAuth.OAuth(
+  const oauth = new OAuth.OAuth(
       'https://api.twitter.com/oauth/request_token',
       'https://api.twitter.com/oauth/access_token',
       consumerKey,

@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Cypress script that posts daily Covid numbers for Ontario",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "oauth": "^0.9.15"
+  },
   "devDependencies": {
     "cypress": "^5.4.0"
   },
