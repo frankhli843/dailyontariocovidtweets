@@ -8,7 +8,7 @@
 
 # To run on your own twitter account
 - The main logic can be at [cypress/integration/Index.js](https://github.com/frankhli843/dailyontariocovidtweets/blob/main/cypress/integration/Index.js) 
-- Requires that you have `config.json` file which the field username and password fill
+- Requires that you have `config.json` file which the field and fill in Twitter OAuth details
 ```
 {
   "consumerKey": "",
