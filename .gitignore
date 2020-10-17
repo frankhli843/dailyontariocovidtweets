@@ -3,3 +3,4 @@ node_modules/*
 .idea/*
 dailyNumbersSave
 config.json
+tweetsSaved.json
