@@ -4,3 +4,4 @@ node_modules/*
 dailyNumbersSave
 tweetsSaved.json
 config.json
+cypress/videos/*

@@ -12,8 +12,10 @@
   },
   "scripts": {
     "start": "cypress open",
-    "run": "cypress run --record false",
-    "test": "cypress run --record false --headless --browser chrome"
+    "run": "yarn clean; cypress run --record false",
+    "headless": "yarn clean; cypress run --record false --headless --browser chrome",
+    "hourly": "watch --interval=3600 yarn headless",
+    "clean": "rm -r cypress/videos"
   },
   "repository": {
     "type": "git",
