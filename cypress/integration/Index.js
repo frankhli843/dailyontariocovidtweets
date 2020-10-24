@@ -1,12 +1,6 @@
 import sendTweet, {tweetMessage} from "../helpers/Tweet";
 import {createHistoryFile} from "../helpers/File";
-import {
-  changeSinceLastReportElement,
-  filePath,
-  latestCasesElement,
-  latestDateElement, tablesButton,
-  tweetsSavedPath
-} from "../helpers/Constants";
+
 
 const { $ } = Cypress;
 const { get, visit } = cy;
@@ -29,6 +23,9 @@ it('Can get values' , () => {
   cy.writeFile(filePath, {latestDate, latestCases, changeSinceLastReport});
 });
 
+it('Can arrive at twitter', () => {
+  visit('https://twitter.com/login');
+});
 it('Can send tweet via API', () => {
   cy.readFile('./config.json').then(configObject => {
     cy.readFile(filePath).then(savedStatsString => {
@@ -45,5 +42,11 @@ it('Can send tweet via API', () => {
 })
 
 
+const tablesButton = '#CasesDaily > :nth-child(3) > [style="position: relative;"] > .ontario-margin-bottom-12-\\! > [aria-hidden="false"] > span';
+const latestDateElement = '[style="position: relative;"] > .ant-table-wrapper > .ant-spin-nested-loading > .ant-spin-container > .ant-table > .ant-table-container > .ant-table-content > table > .ant-table-tbody > :nth-child(1) > :nth-child(1)'
+const latestCasesElement = '[style="position: relative;"] > .ant-table-wrapper > .ant-spin-nested-loading > .ant-spin-container > .ant-table > .ant-table-container > .ant-table-content > table > .ant-table-tbody > :nth-child(1) > :nth-child(2)';
+const changeSinceLastReportElement = '[style="position: relative;"] > .ant-table-wrapper > .ant-spin-nested-loading > .ant-spin-container > .ant-table > .ant-table-container > .ant-table-content > table > .ant-table-tbody > :nth-child(1) > :nth-child(3)';
+const filePath = './dailyNumbersSave'
+const tweetsSavedPath = './tweetsSaved.json'
 
 

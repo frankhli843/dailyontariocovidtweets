@@ -4,14 +4,16 @@
   "description": "Cypress script that posts daily Covid numbers for Ontario",
   "main": "index.js",
   "dependencies": {
-    "oauth": "^0.9.15"
+    "oauth": "^0.9.15",
+    "twitter-lite": "^0.14.0"
   },
   "devDependencies": {
     "cypress": "^5.4.0"
   },
   "scripts": {
     "start": "cypress open",
-    "run": "cypress run --record false"
+    "run": "cypress run --record false",
+    "test": "cypress run --record false --headless --browser chrome"
   },
   "repository": {
     "type": "git",

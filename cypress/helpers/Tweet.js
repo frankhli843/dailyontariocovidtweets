@@ -1,4 +1,6 @@
 import * as OAuth from "oauth";
+import Twitter from 'twitter-lite';
+
 /*
 *	Code snippet for posting tweets to your own twitter account from node.js.
 *	You must first create an app through twitter, grab the apps key/secret,
@@ -10,34 +12,19 @@ import * as OAuth from "oauth";
 *	For additional usage beyond status updates, refer to twitter api
 *		https://dev.twitter.com/docs/api/1.1
 */
-const sendTweet = (status, configObject) => {
-  const { consumerKey, applicationKey, userAccessToken, userSecret } = configObject;
-  const oauth = new OAuth.OAuth(
-      'https://api.twitter.com/oauth/request_token',
-      'https://api.twitter.com/oauth/access_token',
-      consumerKey,
-      applicationKey,
-      '1.0A',
-      null,
-      'HMAC-SHA1'
-  );
-  const postBody = {
-    'status': status
-  };
+const sendTweet = async (status, configObject) => {
+  console.log(`Attempting to Tweet: ${status}`)
+  const { consumerKey, consumerSecret, userAccessToken, userTokenSecret } = configObject;
+  const client = new Twitter({
+    subdomain: "api", // "api" is the default (change for other subdomains)
+    version: "1.1", // version "1.1" is the default (change for other subdomains)
+    consumer_key: consumerKey, // from Twitter.
+    consumer_secret: consumerSecret, // from Twitter.
+    access_token_key: userAccessToken, // from your User (oauth_token)
+    access_token_secret: userTokenSecret // from your User (oauth_token_secret)
+  });
+  await client.post("statuses/update", { status: status }).then(respond => {console.log(respond)});
 
-// console.log('Ready to Tweet article:\n\t', postBody.status);
-  oauth.post('https://api.twitter.com/1.1/statuses/update.json',
-      userAccessToken,  // oauth_token (user access token)
-      userSecret,  // oauth_secret (user secret)
-      postBody,  // post body
-      '',  // post content type ?
-      function(err, data, res) {
-        if (err) {
-          console.log(err);
-        } else {
-          // console.log(data);
-        }
-      });
 }
 
 export const tweetMessage = (savedStats) => {
