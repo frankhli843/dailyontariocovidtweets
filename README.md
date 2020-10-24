@@ -18,7 +18,8 @@
 }
 ```
 - To start with UI run: `yarn start`
-- To start with command line only run: `yarn run`
+- To start with command line only run: `yarn headless`
+- To run every hour headless: `yarn hourly`
 
 
 ![tweet demo](./img/tweet_example.png)
