@@ -12,8 +12,8 @@
   },
   "scripts": {
     "start": "cypress open",
-    "run": "yarn install; yarn clean; cypress run --record false",
-    "headless": "yarn install; yarn clean; cypress run --record false --headless --browser chrome",
+    "run": "cypress run --record false",
+    "headless": "cypress run --record false --headless --browser chrome",
     "hourly": "watch --interval=3600 yarn headless",
     "clean": "rm -r cypress/videos"
   },
