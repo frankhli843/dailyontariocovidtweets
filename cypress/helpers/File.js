@@ -8,10 +8,8 @@ export const createHistoryFile = () => {
   }
 }
 
-export const fileExists = () => {
+export const fileExists = (path) => {
   const fs = require('fs')
-
-  const path = './file.txt'
 
   try {
     if (fs.existsSync(path)) {

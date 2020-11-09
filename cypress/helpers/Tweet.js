@@ -28,9 +28,7 @@ const sendTweet = async (status, configObject) => {
 }
 
 export const tweetMessage = (savedStats) => {
-  return `  ${savedStats.latestDate} had ${savedStats.latestCases} cases reported in Ontario. 
-  Change since last report: ${savedStats.changeSinceLastReport}. 
-  Info taken from covid-19.ontario.ca/`
+  return `${savedStats.latestDate} had ${savedStats.latestCases} cases reported in Ontario | Change: ${savedStats.changeSinceLastReport} | ${savedStats.likelySources} | Info taken from covid-19.ontario.ca/`
 }
 
 export default sendTweet;
