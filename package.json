@@ -14,7 +14,7 @@
     "start": "cypress open",
     "run": "yarn install; cypress run --record false",
     "headless": "yarn; cypress run --record false --headless --browser chrome",
-    "hourly": "watch --interval=3600 yarn run",
+    "hourly": "yarn install; watch --interval=3600 cypress run --record false --headless --browser chrome",
     "clean": "rm -r cypress/videos"
   },
   "repository": {
