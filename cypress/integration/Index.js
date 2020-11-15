@@ -74,7 +74,7 @@ it('Can send tweet via API', () => {
     cy.readFile(filePath).then(savedStatsString => {
       const savedStats = JSON.parse(savedStatsString);
       cy.readFile(tweetsSavedPath).then(savedObject => {
-        if (!(`date_${savedStats.latestDate}` in savedObject)) {
+        if (!(`date_${savedStats.latestDate}_${savedStatsString}` in savedObject)) {
           sendTweet(tweetMessage(savedStats), configObject);
           cy.writeFile(tweetsSavedPath, {...savedObject, [`date_${savedStats.latestDate}_${savedStatsString}`]: ""})
         }
